@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+
+// Base class Person
+class Person {
+protected:
+    std::string name;
+    int age;
+
+public:
+    Person(const std::string& n, int a) : name(n), age(a) {}
+
+    void displayInfo() {
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Age: " << age << std::endl;
+    }
+};
+
+// Derived class Customer
+class Customer : public Person {
+protected:
+    int customerId;
+
+public:
+    Customer(const std::string& n, int a, int id) : Person(n, a), customerId(id) {}
+
+    void displayInfo() {
+        Person::displayInfo();
+        std::cout << "Customer ID: " << customerId << std::endl;
+    }
+};
+
+// Derived class Employee
+class Employee : public Person {
+protected:
+    int employeeId;
+
+public:
+    Employee(const std::string& n, int a, int id) : Person(n, a), employeeId(id) {}
+
+    void displayInfo() {
+        Person::displayInfo();
+        std::cout << "Employee ID: " << employeeId << std::endl;
+    }
+};
+
+// Derived class EmployeeCustomer
+class EmployeeCustomer : public Customer, public Employee {
+public:
+    EmployeeCustomer(const std::string& n, int a, int cid, int eid) : Customer(n, a, cid), Employee(n, a, eid) {}
+
+    void displayInfo() {
+        Customer::displayInfo();
+        std::cout << "Employee ID: " << employeeId << std::endl;
+    }
+};
+
+int main() {
+    EmployeeCustomer ec("John Doe", 30, 1001, 2001);
+    ec.displayInfo();
+
+    return 0;
+}

@@ -1,0 +1,100 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+
+class Date {
+private:
+    int day, month, year;
+
+public:
+    Date() : day(1), month(1), year(2000) {}
+
+    Date(int d, int m, int y) : day(d), month(m), year(y) {}
+
+    void acceptDate() {
+        std::cout << "Enter date (dd mm yyyy): ";
+        std::cin >> day >> month >> year;
+    }
+
+    void displayDate() {
+        std::cout << "Date formats:\n";
+        std::cout << "1. dd-mm-yyyy: " << std::setw(2) << std::setfill('0') << day << "-" << std::setw(2) << std::setfill('0') << month << "-" << year << std::endl;
+        std::string monthAbbreviation;
+        switch (month) {
+            case 1:  monthAbbreviation = "JAN"; break;
+            case 2:  monthAbbreviation = "FEB"; break;
+            case 3:  monthAbbreviation = "MAR"; break;
+            case 4:  monthAbbreviation = "APR"; break;
+            case 5:  monthAbbreviation = "MAY"; break;
+            case 6:  monthAbbreviation = "JUN"; break;
+            case 7:  monthAbbreviation = "JUL"; break;
+            case 8:  monthAbbreviation = "AUG"; break;
+            case 9:  monthAbbreviation = "SEP"; break;
+            case 10: monthAbbreviation = "OCT"; break;
+            case 11: monthAbbreviation = "NOV"; break;
+            case 12: monthAbbreviation = "DEC"; break;
+            default: monthAbbreviation = "INV";
+        }
+        std::cout << "2. dd-MMM-yyyy: " << std::setw(2) << std::setfill('0') << day << "-" << monthAbbreviation << "-" << year << std::endl;
+        std::cout << "3. dd/mm/yy: " << std::setw(2) << std::setfill('0') << day << "/" << std::setw(2) << std::setfill('0') << month << "/" << (year % 100) << std::endl;
+    }
+
+    int calculateDifference(Date d) {
+        int days1 = day + month * 30 + year * 365;
+        int days2 = d.day + d.month * 30 + d.year * 365;
+        return std::abs(days2 - days1);
+    }
+
+    void incrementDay() {
+        if (day < 30) {
+            day++;
+        } else {
+            day = 1;
+            if (month < 12) {
+                month++;
+            } else {
+                month = 1;
+                year++;
+            }
+        }
+    }
+
+    void incrementMonth() {
+        if (month < 12) {
+            month++;
+        } else {
+            month = 1;
+            year++;
+        }
+    }
+};
+
+int main() {
+    Date date1, date2;
+    
+    std::cout << "Enter first date:\n";
+    date1.acceptDate();
+    
+    std::cout << "Enter second date:\n";
+    date2.acceptDate();
+    
+    std::cout << "\nFirst date:\n";
+    date1.displayDate();
+    
+    std::cout << "\nSecond date:\n";
+    date2.displayDate();
+    
+    int difference = date1.calculateDifference(date2);
+    std::cout << "\nDifference between the two dates: " << difference << " days.\n";
+    
+    std::cout << "\nIncrementing first date by one day:\n";
+    date1.incrementDay();
+    date1.displayDate();
+    
+    std::cout << "\nIncrementing first date by one month:\n";
+    date1.incrementMonth();
+    date1.displayDate();
+    
+    return 0;
+}

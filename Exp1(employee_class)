@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    int age;
+    string position;
+    string department;
+    string employeeID;
+    double salary;
+public:
+    // Constructor
+    Employee(string n, int a, string pos, string dept, string id, double sal) : name(n), age(a), position(pos), department(dept), employeeID(id), salary(sal) {}
+
+    // Function to display information
+    void displayInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Position: " << position << endl;
+        cout << "Department: " << department << endl;
+        cout << "Employee ID: " << employeeID << endl;
+        cout << "Salary: $" << salary << endl;
+    }
+};
+
+int main() {
+    // Creating an instance of Employee class
+    Employee employee1("John Doe", 35, "Manager", "Sales", "SA123", 60000.0);
+    // Calling displayInfo() function to display information
+    employee1.displayInfo();
+
+    return 0;
+}

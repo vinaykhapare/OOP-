@@ -1,0 +1,39 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    string movieName;
+    double adultTicketPrice, childTicketPrice, grossAmount;
+    int numAdultTickets, numChildTickets;
+    double donationPercentage;
+
+    cout << "Enter the movie name: ";
+    getline(cin, movieName);
+    cout << "Enter the adult ticket price: $";
+    cin >> adultTicketPrice;
+    cout << "Enter the child ticket price: $";
+    cin >> childTicketPrice;
+    cout << "Enter the number of adult tickets sold: ";
+    cin >> numAdultTickets;
+    cout << "Enter the number of child tickets sold: ";
+    cin >> numChildTickets;
+    cout << "Enter the percentage of the gross amount to be donated to the charity: ";
+    cin >> donationPercentage;
+
+    grossAmount = (adultTicketPrice * numAdultTickets) + (childTicketPrice * numChildTickets);
+
+    double donationAmount = (donationPercentage / 100) * grossAmount;
+
+    double netAmount = grossAmount - donationAmount;
+
+    cout << fixed << setprecision(2);
+    cout << left << setw(25) << "Movie Name: " << setw(25) << setfill('.') << movieName << endl;
+    cout << left << setw(25) << "Gross Amount: " << "$" << setw(24) << setfill('.') << grossAmount << endl;
+    cout << left << setw(25) << "Donation Percentage: " << setw(24) << setfill('.') << donationPercentage << "%" << endl;
+    cout << left << setw(25) << "Donation Amount: " << "$" << setw(24) << setfill('.') << donationAmount << endl;
+    cout << left << setw(25) << "Net Amount (after donation): " << "$" << setw(24) << setfill('.') << netAmount << endl;
+
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+    string address;
+    string phoneNumber;
+public:
+    // Constructor
+    Person(string n, int a, string addr, string phone) : name(n), age(a), address(addr), phoneNumber(phone) {}
+
+    // Function to display information
+    void displayInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Address: " << address << endl;
+        cout << "Phone Number: " << phoneNumber << endl;
+    }
+};
+
+int main() {
+    // Creating an instance of Person class
+    Person person1("Darshan", 19, "virar", "9346309627");
+    // Calling displayInfo() function to display information
+    person1.displayInfo();
+
+    return 0;
+}

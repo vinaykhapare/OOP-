@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    // Constructor
+    Person(string n, int a) : name(n), age(a) {}
+
+    // Function to display information
+    virtual void displayInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+class Student : public Person {
+private:
+    string course;
+    string studentID;
+public:
+    // Constructor
+    Student(string n, int a, string c, string id) : Person(n, a), course(c), studentID(id) {}
+
+    // Function to display information
+    void displayInfo() override {
+        Person::displayInfo();
+        cout << "Course: " << course << endl;
+        cout << "Student ID: " << studentID << endl;
+    }
+};
+
+class Employee : public Person {
+private:
+    string position;
+    string department;
+    string employeeID;
+    double salary;
+public:
+    // Constructor
+    Employee(string n, int a, string pos, string dept, string id, double sal) : Person(n, a), position(pos), department(dept), employeeID(id), salary(sal) {}
+
+    // Function to display information
+    void displayInfo() override {
+        Person::displayInfo();
+        cout << "Position: " << position << endl;
+        cout << "Department: " << department << endl;
+        cout << "Employee ID: " << employeeID << endl;
+        cout << "Salary: $" << salary << endl;
+    }
+};
+
+int main() {
+    int choice;
+    cout << "Choose an option:" << endl;
+    cout << "1. Person" << endl;
+    cout << "2. Student" << endl;
+    cout << "3. Employee" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch(choice) {
+        case 1: {
+            string name;
+            int age;
+            cout << "Enter name: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter age: ";
+            cin >> age;
+            Person person(name, age);
+            person.displayInfo();
+            break;
+        }
+        case 2: {
+            string name, course, studentID;
+            int age;
+            cout << "Enter name: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter age: ";
+            cin >> age;
+            cout << "Enter course: ";
+            cin.ignore();
+            getline(cin, course);
+            cout << "Enter student ID: ";
+            cin >> studentID;
+            Student student(name, age, course, studentID);
+            student.displayInfo();
+            break;
+        }
+        case 3: {
+            string name, position, department, employeeID;
+            double salary;
+            int age;
+            cout << "Enter name: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter age: ";
+            cin >> age;
+            cout << "Enter position: ";
+            cin.ignore();
+            getline(cin, position);
+            cout << "Enter department: ";
+            getline(cin, department);
+            cout << "Enter employee ID: ";
+            cin >> employeeID;
+            cout << "Enter salary: ";
+            cin >> salary;
+            Employee employee(name, age, position, department, employeeID, salary);
+            employee.displayInfo();
+            break;
+        }
+        default:
+            cout << "Invalid choice!" << endl;
+    }
+
+    return 0;
+}
